@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cancer Statistics Explorer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Cancer Statistics Explorer</h1>
+  <p class="sub">See how the total number of cancer deaths has changed over time in each country.</p>
+</header>
+
+<main>
+  <div class="panel">
+    <label for="country">Choose a country or region</label>
+    <select id="country"></select>
+    <p id="summary" aria-live="polite"></p>
+  </div>
+
+  <div class="panel">
+    <div class="chart-wrap"><canvas id="chart"></canvas></div>
+  </div>
+  <div class="panel notes">
+  <h2>What the data shows</h2>
+  <ul id="insights"></ul>
+
+  
+  <p>These figures are the <strong>number</strong> of deaths, not the rate per person. Countries with larger or older populations tend to have more deaths even when the risk per person is the same, so compare trends within one country rather than between countries. A rising count can also reflect population growth and ageing, or better recording of causes of death, and not only a change in cancer risk. This page describes patterns in the data and does not explain their causes.</p>
+</div>
+  <p class="source">Data source: Our World in Data.</p>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
