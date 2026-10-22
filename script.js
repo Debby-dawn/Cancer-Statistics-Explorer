@@ -33,7 +33,7 @@ function fillCountryList() {
   select.addEventListener("change", showCountry);
 }
 
-// Write a summary sentence and draw the chart for the chosen country
+// Write a summary sentence, draw the chart and write the findings
 function showCountry() {
   const country = document.getElementById("country").value;
   const summary = document.getElementById("summary");
@@ -44,6 +44,7 @@ function showCountry() {
 
   if (rows.length === 0) {
     summary.textContent = "No data available for this selection.";
+    document.getElementById("insights").innerHTML = "";
     if (chart) chart.destroy();
     return;
   }
@@ -55,13 +56,12 @@ function showCountry() {
     `compared with ${first[DEATHS_COLUMN].toLocaleString()} in ${first.Year}.`;
 
   drawChart(country, rows);
+  writeInsights(country, rows);
 }
 
 // Draw a line chart of deaths over the years
-function drawChart(country, rows)
-writeInsights(country, rows); {
-      if (chart) chart.destroy();
-    document.getElementById("insights").innerHTML = "";
+function drawChart(country, rows) {
+  if (chart) chart.destroy();
 
   chart = new Chart(document.getElementById("chart"), {
     type: "line",
