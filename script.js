@@ -4,7 +4,6 @@ const DEATHS_COLUMN = "Total deaths from malignant neoplasms among both sexes";
 let allRows = [];
 let chart;
 
-// Read the CSV file and turn each line into a row we can use
 Papa.parse(FILE, {
   download: true,
   header: true,
@@ -17,7 +16,6 @@ Papa.parse(FILE, {
   }
 });
 
-// Put every country name into the dropdown
 function fillCountryList() {
   const select = document.getElementById("country");
   const countries = [...new Set(allRows.map(row => row.Entity))].sort();
@@ -33,7 +31,7 @@ function fillCountryList() {
   select.addEventListener("change", showCountry);
 }
 
-// Write a summary sentence, draw the chart and write the findings
+
 function showCountry() {
   const country = document.getElementById("country").value;
   const summary = document.getElementById("summary");
@@ -59,7 +57,6 @@ function showCountry() {
   writeInsights(country, rows);
 }
 
-// Draw a line chart of deaths over the years
 function drawChart(country, rows) {
   if (chart) chart.destroy();
 
@@ -87,14 +84,13 @@ function drawChart(country, rows) {
   });
 }
 
-// Write short findings about the chosen country
+
 function writeInsights(country, rows) {
   const list = document.getElementById("insights");
   const first = rows[0];
   const last = rows[rows.length - 1];
   const items = [];
 
-  // 1. Overall change from the first year to the last year
   if (first[DEATHS_COLUMN] > 0 && rows.length > 1) {
     const change = ((last[DEATHS_COLUMN] - first[DEATHS_COLUMN]) / first[DEATHS_COLUMN]) * 100;
     const direction = change >= 0 ? "rose" : "fell";
@@ -104,7 +100,7 @@ function writeInsights(country, rows) {
     );
   }
 
-  // 2. The year with the most deaths
+
   let peak = rows[0];
   rows.forEach(row => {
     if (row[DEATHS_COLUMN] > peak[DEATHS_COLUMN]) peak = row;
